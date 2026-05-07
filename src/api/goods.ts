@@ -9,6 +9,7 @@ export function getAll(): Promise<Good[]> {
       if (!response.ok) {
         throw new Error('Failed to fetch goods');
       }
+
       return response.json();
     })
     .catch(error => {
