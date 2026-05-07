@@ -4,18 +4,24 @@ import { GoodsList } from './GoodsList';
 import { Good } from './types/Good';
 import { getAll, get5First, getRedGoods } from './api/goods';
 
-export const App: React.FC = () => {
+const AppComponent: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
   const hadle5FirstGoods = () => {
-    get5First().then(result => setGoods(result));
+    get5First()
+      .then(result => setGoods(result))
+      .catch(() => alert('Error loading 5 first goods'));
   };
 
   const handleAllGoods = () => {
-    getAll().then(result => setGoods(result));
+    getAll()
+      .then(result => setGoods(result))
+      .catch(() => alert('Error loading goods'));
   };
 
   const handleAllRedGoods = () => {
-    getRedGoods().then(result => setGoods(result));
+    getRedGoods()
+      .then(result => setGoods(result))
+      .catch(() => alert('Error loading red goods'));
   };
 
   return (
@@ -42,3 +48,5 @@ export const App: React.FC = () => {
     </div>
   );
 };
+
+export const App = React.memo(AppComponent);
